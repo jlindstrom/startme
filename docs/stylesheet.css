@@ -3,7 +3,7 @@ h1 {
   background-color:gray;
 }
 
-#intro {
+#intro.p {
   color:white;
   background-color:black;
 }
