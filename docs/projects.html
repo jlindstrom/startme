@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>CS50W Projects</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+		<link rel="stylesheet" href="stylesheet2.css">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<div class="col-3" id="navbar">
+				  <h2>Inside!</h2>
+				  <a href="index.html">index.html</a>
+				  <a href="projects.html">projects.html</a>
+				  <a href="stylesheet.css">stylesheet.css</a>
+				  <a href="stylesheet2.css">stylesheet2.css</a>
+				</div>
+				<div class="col">
+				  <div class="row">
+				    <div class="col">
+				<h1>CS50W Projects</h1>
+				<h2>Project 0</h2>
+
+				<p><i>I start with the specs for project 0, reproduced verbatim from <a href="">the description</a> on the course website.</i></p>
+				<h3 id="requirements">Requirements</h3>
+
+				<p>Alright, now it’s time to make your website your own. Design a personal webpage about yourself, one of your interests, or any other topic of your choice. The subject matter, look and feel, and design of the site are entirely up to you, subject to the following requirements:</p>
+
+			<ul>
+			  <li>Your website must contain at least four different <code class="highlighter-rouge">.html</code> pages, and it
+			should be possible to get from any page on your website to any other page by
+			following one or more hyperlinks.</li>
+			  <li>Your website must include at least one list (ordered or unordered), at least
+			one table, and at least one image.</li>
+			  <li>Your website must have at least one stylesheet file.</li>
+			  <li>Your stylesheet(s) must use at least five different CSS properties, and at
+			least five different types of CSS selectors. You must use the <code class="highlighter-rouge">#id</code> selector
+			at least once, and the <code class="highlighter-rouge">.class</code> selector at least once.</li>
+			  <li>Your stylesheet(s) must include at least one mobile-responsive <code class="highlighter-rouge">@media</code> query,
+			such that something about the styling changes for smaller screens.</li>
+			  <li>You must use Bootstrap 4 on your website, taking advantage of at least one
+			Bootstrap <a href="https://getbootstrap.com/docs/4.3/components/">component</a>,
+			and using at least two Bootstrap columns for layout purposes using
+			Bootstrap’s <a href="https://getbootstrap.com/docs/4.3/layout/grid/">grid model</a>.</li>
+			  <li>Your stylesheets must use at least one SCSS variable, at least one example of
+			SCSS nesting, and at least one use of SCSS inheritance.</li>
+			  <li>In <code class="highlighter-rouge">README.md</code>, include a short writeup describing your project, what’s
+			contained in each file, and (optionally) any other additional information the
+			staff should know about your project.</li>
+			</ul>
+
+			<p>Note that not all of the above requirements are covered in Lecture 0, some will
+be introduced in Lecture 1.</p>
+
+			<h3>CSS Selectors</h3>
+
+			<p>Here I'm going to list the selectors mentioned in <a href="https://code.tutsplus.com/tutorials/the-30-css-selectors-you-must-memorize--net-16048">The 30 CSS Selectors You Must Memorize</a> by Jeffrey Way.</p>
+
+
+			<ol class="css-list">
+			    <li><em>all elements:</em> <code>*</code> applies properties to every element on the page. Not recommended for production code.</li>
+			    <li><em>id selector:</em> <code>#X</code> in stylesheet, <code>id</code> in <code>html</code> page. Rigid and can't reuse.   </li>
+			    <li><em>class selector:</em> <code>.X</code> and <code>class</code>. You can target multiple elements.</li>
+			    <li><em>descendant selectors:</em> <code>X Y</code> in stylesheet, where <code>Y</code> is a descendant of <code>X</code>, such as <code>li a</code>.</li>
+			    <li><em>type selector:</em> <code>X</code> in stylesheet is a type of element such as <code>a</code> or <code>ul</code>.</li>
+			    <li><em>visited and link selectors:</em> <code>X:visited</code> and <code>X:link</code> selectors style the pseudo-classes <code>:link</code> and <code>:visited</code>. Example: <code>a:visited { color: purple; }</code>. </li>
+			    <li><em>adjacent selector:</em> <code>X + Y</code> in stylesheet selects only <code>Y</code> and only if <code>Y</code> comes right after <code>X</code>. For example, <code>ul + p {color:red;}</code> turns the first paragraph after an unordered list red.</li>
+			    <li><em>direct children selector:</em> <code>X > Y</code>, unlike <code>X Y</code>, will target only the <code>Y</code> elements that are direct children of <code>X</code>. So <code>div#container > ul {border: 1px solid black;}</code> will apply only to the top <code>ul</code> after <code>&lt;div id="container"&gt;</code>.</li>
+			    <li><em>sibling combinator:</em> <code>X ~ Y</code> selects any element <code>Y</code> that comes after <code>X</code>, unlike <code>X + Y</code>, which only applies to the element <code>Y</code> that immediately follows an <code>X</code>.</li>
+			    <li><em>attributes selector:</em> <code>X[title]</code> in  stylesheet targets only elements <code>X</code> that have a <code>title</code> attribute. So <code>a[title] {color:green;}</code> only targets anchor tags that have a title attribute.</li>
+			    <li><em>link-specific anchor selector:</em> <code>X[href="foo"]</code> targets anchor tags with specified <code>href</code>. For instance: <code>a[href="https://net.tutsplus.com"] {color: #1f6053; /* nettuts green */}</code>. But what if URL in <code>html</code> page is the shorter <code>nettuts.com</code>?  </li>
+			    <li><em>link-specific anchor selector for included expression:</em> <code>X[href*="nettuts"]</code> applies to any anchor with a URL that includes <code>nettuts</code>, such as <code>net.tutsplus.com</code> and <code>tutsplus.com</code>.</li>
+			    <li><em>link-specific anchor selector to precede expression:</em>  <code>X[href^="http"]</code> will select a location just before an anchor. For example, to place an icon before an external link, you could write <code>a[href^="http"] {background: url(path/to/external/icon.png) no-repeat; padding-left: 10px;}</code> in your stylesheet.   </li>
+			    <li><em>link-specific file type selector:</em> <code>X[href$=".jpg"]</code> will target anchors that end in <code>.jpg</code>.</li>
+			    <li><em>data-type selector:</em> <code>X[data-*="foo"]</code> lets you group different files using data types. For instance, by adding a <code>data-filetype</code> attribute to anchors, you can then deal with multiple file extensions with just one selector. For instance: <code>&lt;a href="path/to/image.jpg" data-filetype="image"&gt; Image Link &lt;/a&gt;</code> will be targeted by <code>a[data-filetype="image"]{color: red;}</code>. </li>
+			    <li><em>space-separated data-type selector:</em> <code>X[foo~="bar"]</code> in stylesheet lets you target one word in the value of a data type. If an anchor has attribute <code>data-info = "external image"</code>, you can target <code>"external"</code> and <code>"image"</code> with distinct entries on your stylesheet: <code>a[data-info~="external"] {color: red;}</code> and <code>a[data-info~="image"] {border: 1px solid black;}</code>. </li>
+			    <li><em>checked element selector:</em> <code>X:checked</code> is a pseudoclass that targets only user interface elements that have been "checked," such as radio buttons or checkboxes.  </li>
+			    <li><em>before and after pseudoclass selector:</em> <code>X:after</code> is used in the <code>clearfix</code> hack, which adds a space after an element, then clears it, and can also be used to create shadows.</li>
+			    <li><em>user-action pseudoclass selector:</em> <code>X:hover</code> applies a styling when you hover over an element. For example: <code>div:hover {
+			  background: #e3e3e3;}</code> and <code>a:hover {border-bottom: 1px solid black;}</code>.    </li>
+			    <li><em>negation pseudoclass selector:</em> <code>X:not(selector)</code> targets elements <code>X</code> that don't have a particular attribute. So, for example: <code>div:not(#container) {color: blue;}</code> targets all <code>div</code>s except those that have an <code>id</code> of <code>container</code>.  </li>
+			    <li><em>pseudo-element fragment selector:</em> <code>X::pseudoElement</code> is the form of an entry in a stylesheet that uses double colons and designates a first line or first letter, for instance. Example: <code>p::first-letter {float: left; font-size: 2em; font-weight: bold; font-family: cursive; padding-right: 2px;}</code>.</li>
+			    <li><em>nth-child pseudoclass selector:</em> <code>X:nth-child(n)</code> lets you specify nth element of parent. It's not zero-based, so 
+			<code>li:nth-child(2) {color: red;}</code> is second item in a list. You can also use <code>li:nth-child(4n)</code> to choose every fourth item in a list. </li>
+			    <li><em>nth-last-child pseudoclass selector:</em> <code>X:nth-last-child(n)</code> selects an element or elements from the end.  </li>
+			    <li><em>nth-of-type(n) pseudoclass selector:</em> <code>X:nth-of-type(n)</code> lets you select a <code>type</code> of element, such as the third unordered list when you don't want to use an <code>id</code> hook: <code>ul:nth-of-type(3) {border: 1px solid black;}</code>.   </li>
+			    <li><em>nth-last-of-type pseudoclass selector:</em> <code>X:nth-last-of-type(n)</code> specifies the nth last example of a certain type: <code>ul:nth-last-of-type(3) {border: 1px solid black;}</code>.  </li>
+			    <li><em>first-child pseudoclass selector:</em> <code>X:first-child</code> is useful for changing the look of an initial element. For instance, <code>ul li:first-child {border-top: none;}</code> will remove the top border from the top row.</li>
+			    <li><em>last-child pseudoclass selector:</em> <code>X:last-child</code> is similar to <code>first-child</code>, but chooses the last item of the element's parent: <code>ul > li:last-child {color:green;}</code>.    </li>
+			    <li><em>only-child pseudoclass selector:</em> <code>X:only-child</code> is a bit obscure, but will target elements that are the only child of its parent: <code>div p:only-child {color:red}</code> will only select a <code>div</code> that has only one paragraph.  </li>
+			    <li><em>only-of-type pseudoclass selector:</em> <code>X:only-of-type</code> lets you target elements that lack siblings in the same parent container. So to target every unordered list with just a single item, you could use: <code>ul > li:only-of-type {font-weight: bold;}</code>.   </li>
+			    <li><em>first-of-type pseudoclass selector: </em><code>X:first-of-type</code> selects the first sibling of a type. So <code>ul:first-of-type > li:nth-child(2) {font-weight: bold;}</code> chooses the second item of the first unordered list.</li>
+			</ol>
+
+
+
+				</div>
+		</div>
+	</body>
+</html>
