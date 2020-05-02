@@ -3,7 +3,7 @@ p {
   background-color:black;
 }
 
-p.greening {
+p#greening {
   color:green;
 }
 
