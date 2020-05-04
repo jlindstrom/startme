@@ -3,10 +3,41 @@ ol.css-list em {
 	font-style:normal;
 }
 
-ol.css-list code {
+code {
 	font-weight:bold;
-	font-style:normal;
 	font-size:105%;
 }
+
+xmp {
+	font-weight:bold;
+	font-size:90%;
+	color:green;
+}
+
+.quote-tab { 
+	margin-left: 6px; 
+	border-left: 3px solid gray;
+	padding-left: 16px;
+	color: gray;
+}
+
+td {
+	vertical-align: top;
+}
+
+table#css-props td:first-child {
+	font-weight:bold;
+	font-family:monospace;
+	color:red;
+	font-size:95%;
+}
+
+table#css-props code {
+	font-weight:bold;
+	font-family:monospace;
+	color:red;
+	font-size:95%;
+}
+
 
 

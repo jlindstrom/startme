@@ -11,11 +11,15 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-3" id="navbar">
-				  <h2>Inside!</h2>
+				  <h2>All Files</h2>
 				  <a href="index.html">index.html</a>
 				  <a href="projects.html">projects.html</a>
 				  <a href="stylesheet.css">stylesheet.css</a>
 				  <a href="stylesheet2.css">stylesheet2.css</a>
+				  <br></br>
+				  <h2>On This Page</h2>
+				  (To come.)
+				  
 				</div>
 				<div class="col">
 				  <div class="row">
@@ -23,9 +27,10 @@
 				<h1>CS50W Projects</h1>
 				<h2>Project 0</h2>
 
-				<p><i>I start with the specs for project 0, reproduced verbatim from <a href="">the description</a> on the course website.</i></p>
+				
 				<h3 id="requirements">Requirements</h3>
-
+<p><i>I start with the specs for project 0, reproduced verbatim from <a href="https://docs.cs50.net/web/2020/x/projects/0/project0.html">the description</a> on the course website.</i></p>
+<div class="quote-tab">
 				<p>Alright, now it’s time to make your website your own. Design a personal webpage about yourself, one of your interests, or any other topic of your choice. The subject matter, look and feel, and design of the site are entirely up to you, subject to the following requirements:</p>
 
 			<ul>
@@ -53,6 +58,262 @@
 
 			<p>Note that not all of the above requirements are covered in Lecture 0, some will
 be introduced in Lecture 1.</p>
+</div>
+
+			<h3>Home Page Template</h3>
+			
+			<p><i>Here's project 0's template for <code>index.html</code>.</i></p>
+<xmp><!DOCTYPE html>
+<html>
+    <head>
+        <title>My Webpage</title>
+    </head>
+    <body>
+        Hello, world!
+    </body>
+</html>
+</xmp>
+
+<h3>Hyperlinks</h3>
+<i>Here's <code>link.html</code> from lecture 0's supplied source code. </i>
+<xmp><!DOCTYPE html>
+<html>
+    <head>
+        <title>My Web Page!</title>
+    </head>
+    <body>
+        <a href="https://google.com">Click here!</a>
+    </body>
+</html>
+</xmp>
+
+
+<h3>Lists</h3>
+<p><i>Here's <code>lists.html</code> from lecture 0's supplied source code.</i></p>
+<xmp><!DOCTYPE html>
+<html>
+    <head>
+        <title>My Web Page!</title>
+    </head>
+    <body>
+        An Unordered List:
+        <ul>
+            <li>One Item</li>
+            <li>Another Item</li>
+            <li>Yet Another Item</li>
+        </ul>
+        An Ordered List:
+        <ol>
+            <li>First Item</li>
+            <li>Second Item</li>
+            <li>Another Item Here</li>
+            <li>Fourth Item</li>
+        </ol>
+    </body>
+</html>
+</xmp>
+
+
+
+<h3>Tables</h3>
+<p><i>Here's <code>table.html</code> from lecture 0's supplied source code.</i><p>
+<xmp><!DOCTYPE html>
+<html>
+    <head>
+        <title>Presidents</title>
+        <style>
+            table {
+                border: 2px solid black;
+                border-collapse: collapse;
+                width: 50%;
+            }
+
+            th, td {
+                border: 1px solid black;
+                padding: 5px;
+                text-align: center;
+            }
+
+            th {
+                background-color: lightgray;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Presidents</h1>
+        <table>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Years in Office</th>
+            </tr>
+            <tr>
+                <td>George</td>
+                <td>Washington</td>
+                <td>1789-1797</td>
+            </tr>
+            <tr>
+                <td>John</td>
+                <td>Adams</td>
+                <td>1797-1801</td>
+            </tr>
+            <tr>
+                <td>Thomas</td>
+                <td>Jefferson</td>
+                <td>1801-1809</td>
+            </tr>
+        </table>
+    </body>
+</html>
+</xmp>
+
+
+<h3>Images</h3>
+<p><i>Here's <code>image1.html</code> from lecture 0's supplied source code.</i></p>
+<xmp><!DOCTYPE html>
+<html>
+    <head>
+        <title>My Web Page!</title>
+    </head>
+    <body>
+        <img src="cat.jpg" alt="cat" width="300" height="200">
+    </body>
+</html>
+</xmp>
+
+
+<h3>Stylesheets</h3>
+<p><i>Here's <code>styles.css</code> from lecture 0's supplied source code.</i></p>
+<xmp>h1 {
+    color: blue;
+    text-align: center;
+}
+
+p {
+    color: red;
+}
+
+</xmp>
+
+<p><i>And here's <code>style2.html</code> from lecture 0's supplied source code.</i></p>
+<xmp><!DOCTYPE html>
+<html>
+    <head>
+        <title>My Web Page!</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <h1>Welcome to My Web Page!</h1>
+        <p>Hello, world! This is a paragraph of text.</p>
+        <p>This is another paragraph!</p>
+    </body>
+</html>
+</xmp>
+
+
+			<h3>CSS Properties</h3>
+			
+			<p><i>From <a href="https://www.w3schools.com/cssref/">CSS References</a> on the site <a href="https://w3schools.com">w3schools.com</a> I've selected all the CSS properties that have the word "font" in them.</i></p>
+
+<table id="css-props">
+	<tr>
+		<th>CSS Property</th>
+		<th>Description</th>
+	</tr>
+	<tr>
+		<td>font</td>
+		<td>A shorthand property for the <code>font-style</code>, <code>font-variant</code>, <code>font-weight</code>, <code>font-size</code>/<code>line-height</code>, and the <code>font-family</code> properties</td>
+	</tr>
+	<tr>
+		<td>@font-face</td>
+		<td>A rule that allows websites to download and use fonts other than the "web-safe" fonts</td>
+	</tr>
+	<tr>
+		<td>font-family</td>
+		<td>Specifies the font family for text</td>
+	</tr>
+	<tr>
+		<td>font-feature-settings</td>
+		<td>Allows control over advanced typographic features in OpenType fonts</td>
+	</tr>
+	<tr>
+		<td>@font-feature-values</td>
+		<td>Allows authors to use a common name in <code>font-variant-alternate</code> for feature activated differently in OpenType</td>
+	</tr>
+	<tr>
+		<td>font-kerning</td>
+		<td>Controls the usage of the kerning information (how letters are spaced)</td>
+	</tr>
+	<tr>
+		<td>font-language-override</td>
+		<td>Controls the usage of language-specific glyphs in a typeface</td>
+	</tr>
+	<tr>
+		<td>font-size</td>
+		<td>Specifies the font size of text</td>
+	</tr>
+	<tr>
+		<td>font-size-adjust</td>
+		<td>Preserves the readability of text when font fallback occurs</td>
+	</tr>
+	<tr>
+		<td>font-stretch</td>
+		<td>Selects a normal, condensed, or expanded face from a font family</td>
+	</tr>
+	<tr>
+		<td>font-style</td>
+		<td>Specifies the font style for text</td>
+	</tr>
+	<tr>
+		<td>font-synthesis</td>
+		<td>Controls which missing typefaces (bold or italic) may be synthesized by the browser</td>
+	</tr>
+	<tr>
+		<td>font-variant</td>
+		<td>Specifies whether or not a text should be displayed in a small-caps font</td>
+	</tr>
+	<tr>
+		<td>font-variant-alternates</td>
+		<td>Controls the usage of alternate glyphs associated to alternative names defined in <code>@font-feature-values</code></td>
+	</tr>
+	<tr>
+		<td>font-variant-caps</td>
+		<td>Controls the usage of alternate glyphs for capital letters</td>
+	</tr>
+	<tr>
+		<td>font-variant-east-asian</td>
+		<td>Controls the usage of alternate glyphs for East Asian scripts (e.g Japanese and Chinese)</td>
+	</tr>
+	<tr>
+		<td>font-variant-ligatures</td>
+		<td>Controls which ligatures and contextual forms are used in textual content of the elements it applies to</td>
+	</tr>
+	<tr>
+		<td>font-variant-numeric</td>
+		<td>Controls the usage of alternate glyphs for numbers, fractions, and ordinal markers</td>
+	</tr>
+	<tr>
+		<td>font-variant-position</td>
+		<td>Controls the usage of alternate glyphs of smaller size positioned as superscript or subscript regarding the baseline of the font</td>
+	</tr>
+	<tr>
+		<td>font-weight</td>
+		<td>Specifies the weight of a font</td>
+	</tr>
+</table>
+
+<br></br>
+
+<p><i>And here's <code>inheritance/inheritance.css</code> from lecture 0's supplied source code.</i></p>
+
+<xmp>.success, .warning, .error {
+  font-family: sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  border: 1px solid black;
+  padding: 20px;
+  margin: 20px; }
+</xmp>
 
 			<h3>CSS Selectors</h3>
 
@@ -93,6 +354,72 @@ be introduced in Lecture 1.</p>
 			    <li><em>only-of-type pseudoclass selector:</em> <code>X:only-of-type</code> lets you target elements that lack siblings in the same parent container. So to target every unordered list with just a single item, you could use: <code>ul > li:only-of-type {font-weight: bold;}</code>.   </li>
 			    <li><em>first-of-type pseudoclass selector: </em><code>X:first-of-type</code> selects the first sibling of a type. So <code>ul:first-of-type > li:nth-child(2) {font-weight: bold;}</code> chooses the second item of the first unordered list.</li>
 			</ol>
+
+<h3>The <code>#id</code> Selector</h3>
+
+<p><i>From <code>id.html</code> in lecture 0's supplied source code comes a style specification:</p></i>
+
+<xmp>#hello {
+    font-size: 28px;
+}
+</xmp>
+
+<p><i>and its target:</p></i>
+
+<xmp><body>
+    <h1>Welcome to My Web Page!</h1>
+    <p id="hello">Hello, world! This is a paragraph of text.</p>
+    <p>This is another paragraph!</p>
+</body>
+</xmp>
+
+<p><i>Although in this case the style specification is in the same file as the <code>html</code> code, normally the style specification would be in a separate stylesheet.</i></p>
+
+
+
+
+<h3>The <code>.class</code> Selector</h3>
+
+<p><i>Here is all of <code>class.html</code> from lecture 0's supplied source code:</p></i>
+
+
+<xmp><!DOCTYPE html>
+<html>
+    <head>
+        <title>My Web Page!</title>
+        <style>
+            .foo {
+                color: blue;
+            }
+        </style>
+    </head>
+    <body>
+        <p class="foo">This is the first paragraph.</p>
+        <p>This is the second paragraph.</p>
+        <p class="foo">This is the third paragraph.</p>
+    </body>
+</html>
+</xmp>
+
+<p><i>Although in this case the style specification is in the same file as the <code>html</code> code, normally the style specification would be in a separate stylesheet.</i></p>
+
+
+<h3>Mobile-Responsive <code>@media</code> Query</h3>
+
+<h3>Bootstrap 4</h3>
+
+<h3>Bootstrap Components</h3>
+
+<h3>Bootstrap Columns in Grid Model</h3>
+
+<h3>SCSS Variables</h3>
+
+<h3>SCSS Nesting</h3>
+
+<h3>SCSS Inheritance</h3>
+
+<h3>Markdown and <code>README.md</code></h3>
+
 
 
 
