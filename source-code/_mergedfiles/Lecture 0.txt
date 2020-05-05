@@ -1,0 +1,452 @@
+************************
+Lecture 0 -- border.html
+************************
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Web Page!</title>
+            <style>
+                div {
+                    border: 5px dotted red;
+                }
+            </style>
+    </head>
+    <body>
+        <div>
+            Hello, world!
+        </div>
+    </body>
+</html>
+
+
+
+***********************
+Lecture 0 -- class.html
+***********************
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Web Page!</title>
+        <style>
+            .foo {
+                color: blue;
+            }
+        </style>
+    </head>
+    <body>
+        <p class="foo">This is the first paragraph.</p>
+        <p>This is the second paragraph.</p>
+        <p class="foo">This is the third paragraph.</p>
+    </body>
+</html>
+
+
+
+**************************
+Lecture 0 -- div_span.html
+**************************
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Web Page!</title>
+        <style>
+            #top {
+                font-size: 36px;
+                color: red;
+            }
+
+            #middle {
+                font-size: 24px;
+            }
+
+            #bottom {
+                font-size: 12px;
+            }
+
+            .name {
+                font-weight: bold;
+                color: blue;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="top">
+            This is the <span class="name">top</span> of my web page.
+        </div>
+        <div id="middle">
+            This is the <span class="name">middle</span> of my web page.
+        </div>
+        <div id="bottom">
+            This is the <span class="name">bottom</span> of my web page.
+        </div>
+    </body>
+</html>
+
+
+
+**********************
+Lecture 0 -- font.html
+**********************
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Web Page!</title>
+            <style>
+                div {
+                    font-family: Arial, sans-serif;
+                    font-size: 28px;
+                    font-weight: bold;
+                }
+            </style>
+    </head>
+    <body>
+        <div>
+            Hello, world!
+        </div>
+    </body>
+</html>
+
+
+
+**********************
+Lecture 0 -- form.html
+**********************
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Web Page!</title>
+    </head>
+    <body>
+        <form>
+            <input type="text" placeholder="Full Name" name="name">
+            <button>Submit!</button>
+        </form>
+    </body>
+</html>
+
+
+
+**************************
+Lecture 0 -- headings.html
+**************************
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Web Page!</title>
+    </head>
+    <body>
+        <h1>This is the largest headline</h1>
+        <h2>This is also a large headline</h2>
+        <h3>This is a slightly smaller headline</h3>
+        <h4>This is an even smaller headline</h4>
+        <h5>This is the second-smallest headline</h5>
+        <h6>This is the smallest headline</h6>
+    </body>
+</html>
+
+
+
+***********************
+Lecture 0 -- hello.html
+***********************
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            My Web Page!
+        </title>
+    </head>
+    <body>
+        Hello, world!
+    </body>
+</html>
+
+
+
+********************
+Lecture 0 -- id.html
+********************
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Web Page!</title>
+        <style>
+            h1 {
+                color: blue;
+                text-align: center;
+            }
+
+            #hello {
+                font-size: 28px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Welcome to My Web Page!</h1>
+        <p id="hello">Hello, world! This is a paragraph of text.</p>
+        <p>This is another paragraph!</p>
+    </body>
+</html>
+
+
+
+************************
+Lecture 0 -- image0.html
+************************
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Web Page!</title>
+    </head>
+    <body>
+        <img src="cat.jpg" alt="cat">
+    </body>
+</html>
+
+
+
+************************
+Lecture 0 -- image1.html
+************************
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Web Page!</title>
+    </head>
+    <body>
+        <img src="cat.jpg" alt="cat" width="300" height="200">
+    </body>
+</html>
+
+
+
+**********************
+Lecture 0 -- link.html
+**********************
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Web Page!</title>
+    </head>
+    <body>
+        <a href="https://google.com">Click here!</a>
+    </body>
+</html>
+
+
+
+***********************
+Lecture 0 -- lists.html
+***********************
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Web Page!</title>
+    </head>
+    <body>
+        An Unordered List:
+        <ul>
+            <li>One Item</li>
+            <li>Another Item</li>
+            <li>Yet Another Item</li>
+        </ul>
+        An Ordered List:
+        <ol>
+            <li>First Item</li>
+            <li>Second Item</li>
+            <li>Another Item Here</li>
+            <li>Fourth Item</li>
+        </ol>
+    </body>
+</html>
+
+
+
+**********************
+Lecture 0 -- size.html
+**********************
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Web Page!</title>
+        <style>
+            div {
+                background-color: teal;
+                width: 500px;
+                height: 400px;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            Hello, world!
+        </div>
+    </body>
+</html>
+
+
+
+************************
+Lecture 0 -- style0.html
+************************
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Web Page!</title>
+    </head>
+    <body>
+        <h1 style="color:red;text-align:center;">Welcome to My Web Page!</h1>
+        <h1 style="color:red;text-align:center;">Second</h1>
+        <p style="color:purple;">Hello, world! This is a paragraph of text.</p>
+        <p style="color:red;">This is another paragraph!</p>
+    </body>
+</html>
+
+
+
+************************
+Lecture 0 -- style1.html
+************************
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Web Page!</title>
+        <style>
+            h1 {
+                color: red;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Welcome to My Web Page!</h1>
+        <h1>Here is a second headline!</h1>
+        <p>Hello, world! This is a paragraph of text.</p>
+        <p>This is another paragraph!</p>
+    </body>
+</html>
+
+
+
+************************
+Lecture 0 -- style2.html
+************************
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Web Page!</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <h1>Welcome to My Web Page!</h1>
+        <p>Hello, world! This is a paragraph of text.</p>
+        <p>This is another paragraph!</p>
+    </body>
+</html>
+
+
+
+***********************
+Lecture 0 -- styles.css
+***********************
+
+
+h1 {
+    color: blue;
+    text-align: center;
+}
+
+p {
+    color: red;
+}
+
+
+
+***********************
+Lecture 0 -- table.html
+***********************
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Presidents</title>
+        <style>
+            table {
+                border: 2px solid black;
+                border-collapse: collapse;
+                width: 50%;
+            }
+
+            th, td {
+                border: 1px solid black;
+                padding: 5px;
+                text-align: center;
+            }
+
+            th {
+                background-color: lightgray;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Presidents</h1>
+        <table>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Years in Office</th>
+            </tr>
+            <tr>
+                <td>George</td>
+                <td>Washington</td>
+                <td>1789-1797</td>
+            </tr>
+            <tr>
+                <td>John</td>
+                <td>Adams</td>
+                <td>1797-1801</td>
+            </tr>
+            <tr>
+                <td>Thomas</td>
+                <td>Jefferson</td>
+                <td>1801-1809</td>
+            </tr>
+        </table>
+    </body>
+</html>
+
+
+

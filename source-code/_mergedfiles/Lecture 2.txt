@@ -1,0 +1,926 @@
+***********************
+Lecture 2 -- classes.py
+***********************
+
+
+class Point:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+p = Point(3, 5)
+print(p.x)
+print(p.y)
+
+
+
+**************************
+Lecture 2 -- conditions.py
+**************************
+
+
+x = int(input())
+
+if x > 0:
+    print("x is positive")
+elif x < 0:
+    print("x is negative")
+else:
+    print("x is 0")
+
+
+
+**************************
+Lecture 2 -- decorators.py
+**************************
+
+
+def announce(f):
+    def wrapper():
+        print("About to run the function...")
+        f()
+        print("Done running the function.")
+    return wrapper
+
+@announce
+def hello():
+    print("Hello, world!")
+
+hello()
+
+
+
+****************************
+Lecture 2 -- dictionaries.py
+****************************
+
+
+ages = {"Alice": 22, "Bob": 27}
+ages["Charlie"] = 30
+ages["Alice"] += 1
+
+print(ages)
+
+
+
+*************************
+Lecture 2 -- functions.py
+*************************
+
+
+def square(x):
+    return x * x
+
+for i in range(10):
+    print("{} squared is {}".format(i, square(i)))
+
+
+
+*********************
+Lecture 2 -- hello.py
+*********************
+
+
+print("Hello, world!")
+
+
+
+**********************
+Lecture 2 -- loops0.py
+**********************
+
+
+for i in range(5):
+    print(i)
+
+
+
+**********************
+Lecture 2 -- loops1.py
+**********************
+
+
+names = ["Alice", "Bob", "Charlie"]
+for name in names:
+    print(name)
+
+
+
+***********************
+Lecture 2 -- modules.py
+***********************
+
+
+from functions import square
+
+print(square(10))
+
+
+
+********************
+Lecture 2 -- name.py
+********************
+
+
+name = input()
+print(f"hello, {name}!")
+
+
+
+*************************
+Lecture 2 -- sequences.py
+*************************
+
+
+name = "Alice"
+coordinates = (10.0, 20.0)
+names = ["Alice", "Bob", "Charlie"]
+
+
+
+********************
+Lecture 2 -- sets.py
+********************
+
+
+s = set()
+s.add(1)
+s.add(3)
+s.add(5)
+s.add(3)
+print(s)
+
+
+
+*************************
+Lecture 2 -- variables.py
+*************************
+
+
+i = 28
+print(f"i is {i}")
+
+f = 2.8
+print(f"f is {f}")
+
+b = True
+print(f"b is {b}")
+
+n = None
+print(f"n is {n}")
+
+
+
+**************************************
+Lecture 2 -- conditions/application.py
+**************************************
+
+
+import datetime
+
+from flask import Flask, render_template
+
+app = Flask(__name__)
+
+@app.route("/")
+def index():
+    now = datetime.datetime.now()
+    new_year = now.month == 1 and now.day == 1
+    return render_template("index.html", new_year=new_year)
+
+
+
+********************************************
+Lecture 2 -- conditions/templates/index.html
+********************************************
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Is it New Year?</title>
+        <style>
+            body {
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        {% if new_year %}
+            <h1>Yes! Happy New Year!</h1>
+        {% else %}
+            <h1>NO</h1>
+        {% endif %}
+    </body>
+</html>
+
+
+
+*********************************
+Lecture 2 -- first/application.py
+*********************************
+
+
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route("/")
+def index():
+    return "Hello, world!"
+
+
+
+*********************************
+Lecture 2 -- forms/application.py
+*********************************
+
+
+from flask import Flask, render_template, request
+
+app = Flask(__name__)
+
+@app.route("/")
+def index():
+    return render_template("index.html")
+
+@app.route("/hello", methods=["POST"])
+def hello():
+    name = request.form.get("name")
+    return render_template("hello.html", name=name)
+
+
+
+***************************************
+Lecture 2 -- forms/templates/hello.html
+***************************************
+
+
+{% extends "layout.html" %}
+
+{% block heading %}
+    Hello!
+{% endblock %}
+
+{% block body %}
+    Hello, {{ name }}!
+{% endblock %}
+
+
+
+***************************************
+Lecture 2 -- forms/templates/index.html
+***************************************
+
+
+{% extends "layout.html" %}
+
+{% block heading %}
+    First Page
+{% endblock %}
+
+{% block body %}
+    <form action="{{ url_for('hello') }}" method="post">
+        <input type="text" name="name" placeholder="Enter Your Name">
+        <button>Submit</button>
+    </form>
+{% endblock %}
+
+
+
+****************************************
+Lecture 2 -- forms/templates/layout.html
+****************************************
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Website!</title>
+    </head>
+    <body>
+        <h1>{% block heading %}{% endblock %}</h1>
+
+        {% block body %}
+        {% endblock %}
+    </body>
+</html>
+
+
+
+***************************************
+Lecture 2 -- inheritance/application.py
+***************************************
+
+
+from flask import Flask, render_template
+
+app = Flask(__name__)
+
+@app.route("/")
+def index():
+    return render_template("index.html")
+
+@app.route("/more")
+def more():
+    return render_template("more.html")
+
+
+
+*********************************************
+Lecture 2 -- inheritance/templates/index.html
+*********************************************
+
+
+{% extends "layout.html" %}
+
+{% block heading %}
+    First Page
+{% endblock %}
+
+{% block body %}
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce placerat rutrum nisi at pellentesque. Fusce orci magna, pulvinar ut ultricies id, feugiat eu elit. Nam molestie eu lacus eu fermentum. Fusce eleifend tempus sapien eu maximus. Donec lobortis dapibus magna, quis facilisis velit malesuada a. Nunc iaculis augue nulla, sed sodales dui volutpat lacinia.
+    </p>
+
+    <a href="{{ url_for('more') }}">See more...</a>
+{% endblock %}
+
+
+
+**********************************************
+Lecture 2 -- inheritance/templates/layout.html
+**********************************************
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Website!</title>
+    </head>
+    <body>
+        <h1>{% block heading %}{% endblock %}</h1>
+
+        {% block body %}
+        {% endblock %}
+    </body>
+</html>
+
+
+
+********************************************
+Lecture 2 -- inheritance/templates/more.html
+********************************************
+
+
+{% extends "layout.html" %}
+
+{% block heading %}
+    Second Page
+{% endblock %}
+
+{% block body %}
+    <p>
+        Donec lobortis dapibus magna, quis facilisis velit malesuada a. Nunc iaculis augue nulla, sed sodales dui volutpat lacinia. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nullam non lorem eget augue auctor feugiat at ut justo. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aenean nec lectus eget diam tempor aliquam sit amet sed augue.
+    </p>
+
+    <a href="{{ url_for('index') }}">Go back</a>
+{% endblock %}
+
+
+
+*********************************
+Lecture 2 -- loops/application.py
+*********************************
+
+
+from flask import Flask, render_template
+
+app = Flask(__name__)
+
+@app.route("/")
+def index():
+    names = ["Alice", "Bob", "Charlie"]
+    return render_template("index.html", names=names)
+
+
+
+***************************************
+Lecture 2 -- loops/templates/index.html
+***************************************
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Website!</title>
+    </head>
+    <body>
+        <h1>Names</h1>
+
+        <ul>
+            {% for name in names %}
+                <li>{{ name }}</li>
+            {% endfor %}
+        </ul>
+    </body>
+</html>
+
+
+
+**********************************
+Lecture 2 -- macros/application.py
+**********************************
+
+
+from flask import Flask, render_template, request, session
+from flask_session import Session
+
+app = Flask(__name__)
+
+app.config["SESSION_PERMANENT"] = False
+app.config["SESSION_TYPE"] = "filesystem"
+Session(app)
+
+notes = []
+
+@app.route("/", methods=["GET", "POST"])
+def index():
+    if request.method == "POST":
+        note = request.form.get("note")
+        notes.append(note)
+
+    return render_template("index.html", notes=notes)
+
+
+
+*************************************
+Lecture 2 -- macros/static/styles.css
+*************************************
+
+
+.error {
+    border: 2px solid black;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px;
+    padding: 10px;
+    color: red;
+}
+
+
+
+****************************************
+Lecture 2 -- macros/templates/index.html
+****************************************
+
+
+{% extends "layout.html" %}
+
+{% macro error(message) %}
+    <div class="error">
+        {{ message }}
+    </div>
+{% endmacro %}
+
+{% block body %}
+
+    {{ error("There was a problem.") }}
+
+    {{ error("There was another problem.") }}
+
+{% endblock %}
+
+
+
+*****************************************
+Lecture 2 -- macros/templates/layout.html
+*****************************************
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Website!</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    </head>
+    <body>
+        {% block body %}
+        {% endblock %}
+    </body>
+</html>
+
+
+
+*********************************
+Lecture 2 -- notes/application.py
+*********************************
+
+
+from flask import Flask, render_template, request, session
+from flask_session import Session
+
+app = Flask(__name__)
+
+app.config["SESSION_PERMANENT"] = False
+app.config["SESSION_TYPE"] = "filesystem"
+Session(app)
+
+notes = []
+
+@app.route("/", methods=["GET", "POST"])
+def index():
+    if request.method == "POST":
+        note = request.form.get("note")
+        notes.append(note)
+
+    return render_template("index.html", notes=notes)
+
+
+
+************************************
+Lecture 2 -- notes/static/styles.css
+************************************
+
+
+h1 {
+    color: red;
+}
+
+p {
+    font-family: sans-serif;
+    font-size: 18px;
+}
+
+
+
+***************************************
+Lecture 2 -- notes/templates/index.html
+***************************************
+
+
+{% extends "layout.html" %}
+
+{% block heading %}
+    Notes
+{% endblock %}
+
+{% block body %}
+
+    <ul>
+        {% for note in notes %}
+            <li>{{ note }}</li>
+        {% endfor %}
+    </ul>
+
+    <form action="{{ url_for('index') }}" method="post">
+        <input type="text" name="note" placeholder="Enter Note Here">
+        <button>Add Note</button>
+    </form>
+{% endblock %}
+
+
+
+****************************************
+Lecture 2 -- notes/templates/layout.html
+****************************************
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Website!</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    </head>
+    <body>
+        <h1>{% block heading %}{% endblock %}</h1>
+
+        {% block body %}
+        {% endblock %}
+    </body>
+</html>
+
+
+
+**************************************
+Lecture 2 -- notes/templates/more.html
+**************************************
+
+
+{% extends "layout.html" %}
+
+{% block heading %}
+    Second Page
+{% endblock %}
+
+{% block body %}
+    <p>
+        Donec lobortis dapibus magna, quis facilisis velit malesuada a. Nunc iaculis augue nulla, sed sodales dui volutpat lacinia. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nullam non lorem eget augue auctor feugiat at ut justo. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aenean nec lectus eget diam tempor aliquam sit amet sed augue.
+    </p>
+
+    <a href="{{ url_for('index') }}">Go back</a>
+{% endblock %}
+
+
+
+***********************************
+Lecture 2 -- routes0/application.py
+***********************************
+
+
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route("/")
+def index():
+    return "Hello, world!"
+
+@app.route("/david")
+def david():
+    return "Hello, David!"
+
+
+
+***********************************
+Lecture 2 -- routes1/application.py
+***********************************
+
+
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route("/")
+def index():
+    return "Hello, world!"
+
+@app.route("/<string:name>")
+def hello(name):
+    return "Hello, {}!".format(name)
+
+
+
+**********************************
+Lecture 2 -- static/application.py
+**********************************
+
+
+from flask import Flask, render_template
+
+app = Flask(__name__)
+
+@app.route("/")
+def index():
+    return render_template("index.html")
+
+@app.route("/more")
+def more():
+    return render_template("more.html")
+
+
+
+*************************************
+Lecture 2 -- static/static/styles.css
+*************************************
+
+
+h1 {
+    color: red;
+}
+
+p {
+    font-family: sans-serif;
+    font-size: 18px;
+}
+
+
+
+****************************************
+Lecture 2 -- static/templates/index.html
+****************************************
+
+
+{% extends "layout.html" %}
+
+{% block heading %}
+    First Page
+{% endblock %}
+
+{% block body %}
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce placerat rutrum nisi at pellentesque. Fusce orci magna, pulvinar ut ultricies id, feugiat eu elit. Nam molestie eu lacus eu fermentum. Fusce eleifend tempus sapien eu maximus. Donec lobortis dapibus magna, quis facilisis velit malesuada a. Nunc iaculis augue nulla, sed sodales dui volutpat lacinia.
+    </p>
+
+    <a href="{{ url_for('more') }}">See more...</a>
+{% endblock %}
+
+
+
+*****************************************
+Lecture 2 -- static/templates/layout.html
+*****************************************
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Website!</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    </head>
+    <body>
+        <h1>{% block heading %}{% endblock %}</h1>
+
+        {% block body %}
+        {% endblock %}
+    </body>
+</html>
+
+
+
+***************************************
+Lecture 2 -- static/templates/more.html
+***************************************
+
+
+{% extends "layout.html" %}
+
+{% block heading %}
+    Second Page
+{% endblock %}
+
+{% block body %}
+    <p>
+        Donec lobortis dapibus magna, quis facilisis velit malesuada a. Nunc iaculis augue nulla, sed sodales dui volutpat lacinia. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nullam non lorem eget augue auctor feugiat at ut justo. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aenean nec lectus eget diam tempor aliquam sit amet sed augue.
+    </p>
+
+    <a href="{{ url_for('index') }}">Go back</a>
+{% endblock %}
+
+
+
+*************************************
+Lecture 2 -- templates/application.py
+*************************************
+
+
+from flask import Flask, render_template
+
+app = Flask(__name__)
+
+@app.route("/")
+def index():
+    return render_template("index.html")
+
+
+
+*******************************************
+Lecture 2 -- templates/templates/index.html
+*******************************************
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Website!</title>
+    </head>
+    <body>
+        Hello, world!
+    </body>
+</html>
+
+
+
+********************************
+Lecture 2 -- urls/application.py
+********************************
+
+
+from flask import Flask, render_template
+
+app = Flask(__name__)
+
+@app.route("/")
+def index():
+    return render_template("index.html")
+
+@app.route("/more")
+def more():
+    return render_template("more.html")
+
+
+
+**************************************
+Lecture 2 -- urls/templates/index.html
+**************************************
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Website!</title>
+    </head>
+    <body>
+        <h1>First Page</h1>
+
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce placerat rutrum nisi at pellentesque. Fusce orci magna, pulvinar ut ultricies id, feugiat eu elit. Nam molestie eu lacus eu fermentum. Fusce eleifend tempus sapien eu maximus. Donec lobortis dapibus magna, quis facilisis velit malesuada a. Nunc iaculis augue nulla, sed sodales dui volutpat lacinia.
+        </p>
+
+        <a href="{{ url_for('more') }}">See more...</a>
+    </body>
+</html>
+
+
+
+*************************************
+Lecture 2 -- urls/templates/more.html
+*************************************
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Website!</title>
+    </head>
+    <body>
+        <h1>Second Page</h1>
+
+        <p>
+            Donec lobortis dapibus magna, quis facilisis velit malesuada a. Nunc iaculis augue nulla, sed sodales dui volutpat lacinia. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nullam non lorem eget augue auctor feugiat at ut justo. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aenean nec lectus eget diam tempor aliquam sit amet sed augue.
+        </p>
+
+        <a href="{{ url_for('index') }}">Go back</a>
+    </body>
+</html>
+
+
+
+**************************************
+Lecture 2 -- variables0/application.py
+**************************************
+
+
+from flask import Flask, render_template
+
+app = Flask(__name__)
+
+@app.route("/")
+def index():
+    headline = "Hello, world!"
+    return render_template("index.html", headline=headline)
+
+
+
+********************************************
+Lecture 2 -- variables0/templates/index.html
+********************************************
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Website!</title>
+    </head>
+    <body>
+        <h1>{{ headline }}</h1>
+    </body>
+</html>
+
+
+
+**************************************
+Lecture 2 -- variables1/application.py
+**************************************
+
+
+import random
+
+from flask import Flask, render_template
+
+app = Flask(__name__)
+
+@app.route("/")
+def index():
+    headline = random.choice(["Hello, world!", "Hi there!", "Good morning!"])
+    return render_template("index.html", headline=headline)
+
+
+
+********************************************
+Lecture 2 -- variables1/templates/index.html
+********************************************
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Website!</title>
+    </head>
+    <body>
+        <h1>{{ headline }}</h1>
+    </body>
+</html>
+
+
+

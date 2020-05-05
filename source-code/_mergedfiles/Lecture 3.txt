@@ -1,0 +1,690 @@
+************************
+Lecture 3 -- clauses.sql
+************************
+
+
+SELECT * FROM flights LIMIT 2;
+SELECT * FROM flights ORDER BY duration ASC;
+SELECT * FROM flights ORDER BY duration DESC;
+SELECT origin, COUNT(*) FROM flights GROUP BY origin;
+SELECT origin, COUNT(*) FROM flights GROUP BY origin HAVING COUNT(*) > 1;
+
+
+
+***********************
+Lecture 3 -- create.sql
+***********************
+
+
+CREATE TABLE flights (
+    id SERIAL PRIMARY KEY,
+    origin VARCHAR NOT NULL,
+    destination VARCHAR NOT NULL,
+    duration INTEGER NOT NULL
+);
+
+
+
+***********************
+Lecture 3 -- delete.sql
+***********************
+
+
+DELETE FROM countries WHERE destination = 'Tokyo';
+
+
+
+************************
+Lecture 3 -- flights.csv
+************************
+
+
+Paris,New York,540
+Tokyo,Shanghai,185
+Seoul,Mexico City,825
+Mexico City,Lima,350
+Hong Kong,Shanghai,130
+
+
+
+**********************
+Lecture 3 -- import.py
+**********************
+
+
+import csv
+import os
+
+from sqlalchemy import create_engine
+from sqlalchemy.orm import scoped_session, sessionmaker
+
+engine = create_engine(os.getenv("DATABASE_URL"))
+db = scoped_session(sessionmaker(bind=engine))
+
+def main():
+    f = open("flights.csv")
+    reader = csv.reader(f)
+    for origin, destination, duration in reader:
+        db.execute("INSERT INTO flights (origin, destination, duration) VALUES (:origin, :destination, :duration)",
+                    {"origin": origin, "destination": destination, "duration": duration})
+        print(f"Added flight from {origin} to {destination} lasting {duration} minutes.")
+    db.commit()
+
+if __name__ == "__main__":
+    main()
+
+
+
+**********************
+Lecture 3 -- index.sql
+**********************
+
+
+CREATE INDEX duration_index ON flights (duration);
+
+
+
+***********************
+Lecture 3 -- insert.sql
+***********************
+
+
+INSERT INTO flights (origin, destination, duration) VALUES ('New York', 'London', 415);
+INSERT INTO flights (origin, destination, duration) VALUES ('Shanghai', 'Paris', 760);
+INSERT INTO flights (origin, destination, duration) VALUES ('Istanbul', 'Tokyo', 700);
+INSERT INTO flights (origin, destination, duration) VALUES ('New York', 'Paris', 435);
+INSERT INTO flights (origin, destination, duration) VALUES ('Moscow', 'Paris', 245);
+INSERT INTO flights (origin, destination, duration) VALUES ('Lima', 'New York', 455);
+
+
+
+**********************
+Lecture 3 -- joins.sql
+**********************
+
+
+CREATE TABLE passengers (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR NOT NULL,
+    flight_id INTEGER REFERENCES flights
+);
+
+INSERT INTO passengers (name, flight_id) VALUES ('Alice', 1);
+INSERT INTO passengers (name, flight_id) VALUES ('Bob', 1);
+INSERT INTO passengers (name, flight_id) VALUES ('Charlie', 2);
+INSERT INTO passengers (name, flight_id) VALUES ('Dave', 2);
+INSERT INTO passengers (name, flight_id) VALUES ('Erin', 4);
+INSERT INTO passengers (name, flight_id) VALUES ('Frank', 6);
+INSERT INTO passengers (name, flight_id) VALUES ('Grace', 6);
+
+
+SELECT origin, destination, name FROM flights INNER JOIN passengers ON passengers.flight_id = flights.id;
+SELECT origin, destination, name FROM flights JOIN passengers ON passengers.flight_id = flights.id;
+SELECT origin, destination, name FROM flights LEFT OUTER JOIN passengers ON passengers.flight_id = flights.id;
+SELECT origin, destination, name FROM flights RIGHT OUTER JOIN passengers ON passengers.flight_id = flights.id;
+
+
+
+********************
+Lecture 3 -- list.py
+********************
+
+
+import os
+
+from sqlalchemy import create_engine
+from sqlalchemy.orm import scoped_session, sessionmaker
+
+engine = create_engine(os.getenv("DATABASE_URL"))
+db = scoped_session(sessionmaker(bind=engine))
+
+def main():
+    flights = db.execute("SELECT origin, destination, duration FROM flights").fetchall()
+    for flight in flights:
+        print(f"{flight.origin} to {flight.destination}, {flight.duration} minutes.")
+
+if __name__ == "__main__":
+    main()
+
+
+
+**************************
+Lecture 3 -- passengers.py
+**************************
+
+
+import os
+
+from sqlalchemy import create_engine
+from sqlalchemy.orm import scoped_session, sessionmaker
+
+engine = create_engine(os.getenv("DATABASE_URL"))
+db = scoped_session(sessionmaker(bind=engine))
+
+def main():
+
+    # List all flights.
+    flights = db.execute("SELECT id, origin, destination, duration FROM flights").fetchall()
+    for flight in flights:
+        print(f"Flight {flight.id}: {flight.origin} to {flight.destination}, {flight.duration} minutes.")
+
+    # Prompt user to choose a flight.
+    flight_id = int(input("\nFlight ID: "))
+    flight = db.execute("SELECT origin, destination, duration FROM flights WHERE id = :id",
+                        {"id": flight_id}).fetchone()
+
+    # Make sure flight is valid.
+    if flight is None:
+        print("Error: No such flight.")
+        return
+
+    # List passengers.
+    passengers = db.execute("SELECT name FROM passengers WHERE flight_id = :flight_id",
+                            {"flight_id": flight_id}).fetchall()
+    print("\nPassengers:")
+    for passenger in passengers:
+        print(passenger.name)
+    if len(passengers) == 0:
+        print("No passengers.")
+
+if __name__ == "__main__":
+    main()
+
+
+
+***********************
+Lecture 3 -- select.sql
+***********************
+
+
+SELECT * FROM flights;
+SELECT origin, destination FROM flights;
+SELECT * FROM flights WHERE id = 3;
+SELECT * FROM flights WHERE origin = 'New York';
+SELECT * FROM flights WHERE duration > 500;
+SELECT * FROM flights WHERE destination = 'Paris' AND duration > 500;
+SELECT * FROM flights WHERE destination = 'Paris' OR duration > 500;
+SELECT COUNT(*) FROM flights;
+SELECT AVG(duration) FROM flights;
+
+
+
+***********************
+Lecture 3 -- update.sql
+***********************
+
+
+UPDATE flights SET duration = 430 WHERE origin = 'New York' AND destination = 'London';
+UPDATE flights SET duration = duration + 15 WHERE origin = 'New York' AND destination = 'London';
+
+
+
+************************************
+Lecture 3 -- airline0/application.py
+************************************
+
+
+import os
+
+from flask import Flask, render_template, request
+from sqlalchemy import create_engine
+from sqlalchemy.orm import scoped_session, sessionmaker
+
+app = Flask(__name__)
+
+engine = create_engine(os.getenv("DATABASE_URL"))
+db = scoped_session(sessionmaker(bind=engine))
+
+@app.route("/")
+def index():
+    flights = db.execute("SELECT * FROM flights").fetchall()
+    return render_template("index.html", flights=flights)
+
+@app.route("/book", methods=["POST"])
+def book():
+    """Book a flight."""
+
+    # Get form information.
+    name = request.form.get("name")
+    try:
+        flight_id = int(request.form.get("flight_id"))
+    except ValueError:
+        return render_template("error.html", message="Invalid flight number.")
+
+    # Make sure the flight exists.
+    if db.execute("SELECT * FROM flights WHERE id = :id", {"id": flight_id}).rowcount == 0:
+        return render_template("error.html", message="No such flight with that id.")
+    db.execute("INSERT INTO passengers (name, flight_id) VALUES (:name, :flight_id)",
+            {"name": name, "flight_id": flight_id})
+    db.commit()
+    return render_template("success.html")
+
+
+
+
+******************************************
+Lecture 3 -- airline0/templates/error.html
+******************************************
+
+
+{% extends "layout.html" %}
+
+{% block title %}
+    Error
+{% endblock %}
+
+{% block body %}
+    <h1>Error</h1>
+
+    {{ message }}
+{% endblock %}
+
+
+
+******************************************
+Lecture 3 -- airline0/templates/index.html
+******************************************
+
+
+{% extends "layout.html" %}
+
+{% block title %}
+    Flights
+{% endblock %}
+
+{% block body %}
+    <h1>Book a Flight</h1>
+
+    <form action="{{ url_for('book') }}" method="post">
+
+        <div class="form-group">
+            <select class="form-control" name="flight_id">
+                {% for flight in flights %}
+                    <option value="{{ flight.id }}">{{ flight.origin }} to {{ flight.destination }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <input class="form-control" name="name" placeholder="Passenger Name">
+        </div>
+
+        <div class="form-group">
+            <button class="btn btn-primary">Book Flight</button>
+        </div>
+
+    </form>
+{% endblock %}
+
+
+
+*******************************************
+Lecture 3 -- airline0/templates/layout.html
+*******************************************
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container">
+            {% block body %}
+            {% endblock %}
+        </div>
+    </body>
+</html>
+
+
+
+********************************************
+Lecture 3 -- airline0/templates/success.html
+********************************************
+
+
+{% extends "layout.html" %}
+
+{% block title %}
+    Success!
+{% endblock %}
+
+{% block body %}
+    <h1>Success!</h1>
+
+    You have successfully booked your flight.
+{% endblock %}
+
+
+
+************************************
+Lecture 3 -- airline1/application.py
+************************************
+
+
+import os
+
+from flask import Flask, render_template, request
+from sqlalchemy import create_engine
+from sqlalchemy.orm import scoped_session, sessionmaker
+
+app = Flask(__name__)
+
+engine = create_engine(os.getenv("DATABASE_URL"))
+db = scoped_session(sessionmaker(bind=engine))
+
+@app.route("/")
+def index():
+    flights = db.execute("SELECT * FROM flights").fetchall()
+    return render_template("index.html", flights=flights)
+
+@app.route("/book", methods=["POST"])
+def book():
+    """Book a flight."""
+
+    # Get form information.
+    name = request.form.get("name")
+    try:
+        flight_id = int(request.form.get("flight_id"))
+    except ValueError:
+        return render_template("error.html", message="Invalid flight number.")
+
+    # Make sure flight exists.
+    if db.execute("SELECT * FROM flights WHERE id = :id", {"id": flight_id}).rowcount == 0:
+        return render_template("error.html", message="No such flight with that id.")
+    db.execute("INSERT INTO passengers (name, flight_id) VALUES (:name, :flight_id)",
+            {"name": name, "flight_id": flight_id})
+    db.commit()
+    return render_template("success.html")
+
+@app.route("/flights")
+def flights():
+    """Lists all flights."""
+    flights = db.execute("SELECT * FROM flights").fetchall()
+    return render_template("flights.html", flights=flights)
+
+@app.route("/flights/<int:flight_id>")
+def flight(flight_id):
+    """Lists details about a single flight."""
+
+    # Make sure flight exists.
+    flight = db.execute("SELECT * FROM flights WHERE id = :id", {"id": flight_id}).fetchone()
+    if flight is None:
+        return render_template("error.html", message="No such flight.")
+
+    # Get all passengers.
+    passengers = db.execute("SELECT name FROM passengers WHERE flight_id = :flight_id",
+                            {"flight_id": flight_id}).fetchall()
+    return render_template("flight.html", flight=flight, passengers=passengers)
+
+
+
+******************************************
+Lecture 3 -- airline1/templates/error.html
+******************************************
+
+
+{% extends "layout.html" %}
+
+{% block title %}
+    Error
+{% endblock %}
+
+{% block body %}
+    <h1>Error</h1>
+
+    {{ message }}
+{% endblock %}
+
+
+
+*******************************************
+Lecture 3 -- airline1/templates/flight.html
+*******************************************
+
+
+{% extends "layout.html" %}
+
+{% block title %}
+    Flight
+{% endblock %}
+
+{% block body %}
+    <h1>Flight Details</h1>
+
+    <ul>
+        <li>Origin: {{ flight.origin }}</li>
+        <li>Destination: {{ flight.destination }}</li>
+        <li>Duration: {{ flight.duration}} minutes</li>
+    </ul>
+
+    <h2>Passengers</h2>
+    <ul>
+        {% for passenger in passengers %}
+            <li>{{ passenger.name }}</li>
+        {% else %}
+            <li>No passengers.</li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
+
+
+
+********************************************
+Lecture 3 -- airline1/templates/flights.html
+********************************************
+
+
+{% extends "layout.html" %}
+
+{% block title %}
+    Flights
+{% endblock %}
+
+{% block body %}
+    <h1>All Flights</h1>
+
+    <ul>
+        {% for flight in flights %}
+            <li>
+                <a href="{{ url_for('flight', flight_id=flight.id) }}">
+                    {{ flight.origin }} to {{ flight.destination }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
+
+
+
+******************************************
+Lecture 3 -- airline1/templates/index.html
+******************************************
+
+
+{% extends "layout.html" %}
+
+{% block title %}
+    Flights
+{% endblock %}
+
+{% block body %}
+    <h1>Book a Flight</h1>
+
+    <form action="{{ url_for('book') }}" method="post">
+
+        <div class="form-group">
+            <select class="form-control" name="flight_id">
+                {% for flight in flights %}
+                    <option value="{{ flight.id }}">{{ flight.origin }} to {{ flight.destination }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <input class="form-control" name="name" placeholder="Passenger Name">
+        </div>
+
+        <div class="form-group">
+            <button class="btn btn-primary">Book Flight</button>
+        </div>
+
+    </form>
+{% endblock %}
+
+
+
+*******************************************
+Lecture 3 -- airline1/templates/layout.html
+*******************************************
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container">
+            {% block body %}
+            {% endblock %}
+        </div>
+    </body>
+</html>
+
+
+
+********************************************
+Lecture 3 -- airline1/templates/success.html
+********************************************
+
+
+{% extends "layout.html" %}
+
+{% block title %}
+    Success!
+{% endblock %}
+
+{% block body %}
+    <h1>Success!</h1>
+
+    You have successfully booked your flight.
+{% endblock %}
+
+
+
+*********************************
+Lecture 3 -- notes/application.py
+*********************************
+
+
+from flask import Flask, render_template, request, session
+from flask_session import Session
+
+app = Flask(__name__)
+
+app.config["SESSION_PERMANENT"] = False
+app.config["SESSION_TYPE"] = "filesystem"
+Session(app)
+
+notes = []
+
+@app.route("/", methods=["GET", "POST"])
+def index():
+    if request.method == "POST":
+        note = request.form.get("note")
+        notes.append(note)
+
+    return render_template("index.html", notes=notes)
+
+
+
+************************************
+Lecture 3 -- notes/static/styles.css
+************************************
+
+
+h1 {
+    color: red;
+}
+
+p {
+    font-family: sans-serif;
+    font-size: 18px;
+}
+
+
+
+***************************************
+Lecture 3 -- notes/templates/index.html
+***************************************
+
+
+{% extends "layout.html" %}
+
+{% block heading %}
+    Notes
+{% endblock %}
+
+{% block body %}
+
+    <ul>
+        {% for note in notes %}
+            <li>{{ note }}</li>
+        {% endfor %}
+    </ul>
+
+    <form action="{{ url_for('index') }}" method="post">
+        <input type="text" name="note" placeholder="Enter Note Here">
+        <button>Add Note</button>
+    </form>
+{% endblock %}
+
+
+
+****************************************
+Lecture 3 -- notes/templates/layout.html
+****************************************
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Website!</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    </head>
+    <body>
+        <h1>{% block heading %}{% endblock %}</h1>
+
+        {% block body %}
+        {% endblock %}
+    </body>
+</html>
+
+
+
+**************************************
+Lecture 3 -- notes/templates/more.html
+**************************************
+
+
+{% extends "layout.html" %}
+
+{% block heading %}
+    Second Page
+{% endblock %}
+
+{% block body %}
+    <p>
+        Donec lobortis dapibus magna, quis facilisis velit malesuada a. Nunc iaculis augue nulla, sed sodales dui volutpat lacinia. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nullam non lorem eget augue auctor feugiat at ut justo. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aenean nec lectus eget diam tempor aliquam sit amet sed augue.
+    </p>
+
+    <a href="{{ url_for('index') }}">Go back</a>
+{% endblock %}
+
+
+
