@@ -32,7 +32,7 @@ table#css-props td:first-child {
 	font-size:95%;
         vertical-align:middle;
 	background-color:lightgray;
-	border:2px;
+	border:2px solid white;
 }
 
 table#css-props code {
