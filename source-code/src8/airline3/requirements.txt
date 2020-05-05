@@ -1,1 +1,1 @@
-Django==2.0
+# Django==2.0 # Commented out because of GitHub security alert
