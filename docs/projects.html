@@ -407,7 +407,84 @@ p {
 
 <h3>Mobile-Responsive <code>@media</code> Query</h3>
 		
-<p><i>Here's <code>....html</code> from lecture 0's supplied source code.</i><p>
+<p><i>Here are <code>print.html</code>,  <code>responsive0.html</code>, and
+<code>responsive1.html</code>
+from lecture 1's supplied source code.</i><p>
+		
+<xmp><!DOCTYPE html>
+<html>
+    <head>
+        <title>My Web Page!</title>
+        <style>
+            @media print {
+                .screen-only {
+                    display: none;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <p>This is a paragraph.</p>
+        <p>This is another paragraph.</p>
+        <p class="screen-only">This paragraph won't appear when you print this page.</p>
+    </body>
+</html>
+</xmp>
+		
+<xmp><!DOCTYPE html>
+<html>
+    <head>
+        <title>My Web Page!</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            @media (min-width: 500px) {
+                body {
+                    background-color: red;
+                }
+            }
+
+            @media (max-width: 499px) {
+                body {
+                    background-color: blue;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Welcome to My Web Page!</h1>
+    </body>
+</html>
+</xmp>
+		
+		
+<xmp><!DOCTYPE html>
+<html>
+    <head>
+        <title>My Web Page!</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            @media (min-width: 500px) {
+                h1::before {
+                    content: "Welcome to My Web Page!";
+                }
+            }
+
+            @media (max-width: 499px) {
+                h1::before {
+                    content: "Welcome!";
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <h1></h1>
+    </body>
+</html>
+</xmp>		
+
+<p><i>Although in each case the style specification is in the same file as 
+the <code>html</code> code, 
+normally the style specification would be in a separate stylesheet.</i></p>
 
 <h3>Bootstrap 4</h3>
 		
