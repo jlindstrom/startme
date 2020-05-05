@@ -32,6 +32,7 @@ table#css-props td:first-child {
 	font-size:95%;
         vertical-align:middle;
 	background-color:lightgray;
+	border:2px;
 }
 
 table#css-props code {
