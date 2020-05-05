@@ -30,6 +30,7 @@ table#css-props td:first-child {
 	font-family:monospace;
 	color:red;
 	font-size:95%;
+        vertical-align:middle;
 }
 
 table#css-props code {
