@@ -10,7 +10,7 @@
 	<body>
 		<div class="container">
 			<div class="row">
-				<div class="col-3" id="navbar">
+				<div class="col-3">
 				  <h2>All Files</h2>
 				  <a href="index.html">index.html</a>
 				  <a href="projects.html">projects.html</a>
@@ -21,10 +21,21 @@
 				  (To come.)
 				  
 				</div>
-				<div class="col">
-				  <div class="row">
-				    <div class="col">
+				<div class="col-9">
+
 				<h1>CS50W Projects</h1>
+
+				<p>This page started off as notes I gathered up from the first two lectures
+				and the first project assignment. Only later did I realize the course
+				site does provide lecture notes: here are the supplied notes for 
+				<a href="https://cs50.harvard.edu/web/notes/0/">lecture 0</a> 
+				and <a href="https://cs50.harvard.edu/web/notes/1/">lecture 1</a>.</p>
+
+				<p>I'm not sure how this gap in my perception arose, though for now I'll
+				assume it's some kind of incompetence on my part.</p>
+
+				<p>In any event, here are what I'll call my supplemental notes.</p>
+
 				<h2>Project 0</h2>
 
 				
@@ -487,39 +498,276 @@ the <code>html</code> code,
 normally the style specification would be in a separate stylesheet.</i></p>
 
 <h3>Bootstrap 4</h3>
+
+<p>According to <a href="https://getbootstrap.com">getbootstrap.com</a>, "Bootstrap is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with our Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery."</p>
+
+<p>You can install Bootstrap 4 on your local machine, or just use a BootstrapCDN stylesheet link (see <a href="https://www.bootstrapcdn.com/">bootstrapcdn.com</a>).</p>
 		
-<p><i>Here's <code>....html</code> from lecture 0's supplied source code.</i><p>
+<p><i>Here's <code>bootstrap.html</code> from lecture 1's supplied source code.</i><p>
+
+<xmp><!DOCTYPE html>
+<html>
+    <head>
+        <title>My Web Page!</title>
+        <link rel="stylesheet" 
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+ 	crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container">
+            <h1>Hello, world!</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+	Pellentesque elit magna, hendrerit a tortor eu, euismod lobortis dolor. 
+	Integer accumsan orci et semper bibendum.</p>
+        </div>
+    </body>
+</html>
+</xmp>
 
 <h3>Bootstrap Components</h3>
 		
-<p><i>Here's <code>....html</code> from lecture 0's supplied source code.</i><p>
+<p>As noted on an <a href="https://www.educba.com/bootstrap-components/">educba.com page</a>,
+"Bootstrap is bundled with tens of components that can be reused to provide good user experience and user interactions in a web page like navigation bars, pop-ups, dropdowns, icons, buttons, pre-designed forms and also sizing options for different DOM elements."</p>
+
+<p><i>Here are <code>alert.html</code> and <code>buttons.html</code> from lecture 1's supplied source code.</i><p>
+
+<xmp><!DOCTYPE html>
+<html>
+    <head>
+        <title>My Web Page!</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <style>
+            .alert {
+                margin: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="alert alert-primary" role="alert">
+                This is an alert message. News!
+            </div>
+            <div class="alert alert-success" role="alert">
+                This is an alert message. Good news!
+            </div>
+            <div class="alert alert-danger" role="alert">
+                This is an alert message. Bad news!
+            </div>
+        </div>
+    </body>
+</html>
+</xmp>
+
+<xmp><!DOCTYPE html>
+<html>
+    <head>
+        <title>My Web Page!</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container">
+            <button type="button" class="btn btn-primary">Primary</button>
+            <button type="button" class="btn btn-success">Success</button>
+            <button type="button" class="btn btn-danger">Danger</button>
+        </div>
+    </body>
+</html>
+</xmp>
 
 <h3>Bootstrap Columns in Grid Model</h3>
+
+
+<p><i>According to <a href="https://www.tutorialrepublic.com/twitter-bootstrap-tutorial/bootstrap-grid-system.php">a webpage at tutorialrepublic.com</a></i>:</p>
+
+<div class="quote-tab">
+<p>Bootstrap grid system provides the quick and convenient way to create responsive website layouts. The latest Bootstrap 4 version introduces the new mobile-first flexbox grid system that appropriately scales up to 12 columns as the device or viewport size increases.</p>
+
+<p>Bootstrap 4 includes predefined grid classes for quickly making grid layouts for different types of devices like cell phones, tablets, laptops and desktops, etc. For example, you can use the <code>.col-*</code> classes to create grid columns for extra small devices mobile phones in portrait mode, similarly you can use the <code>.col-sm-*</code> classes to create grid columns for small screen devices like mobile phone in landscape mode, the <code>.col-md-*</code> classes for medium screen devices like tablets, the <code>.col-lg-*</code> classes for large devices like desktops, and the <code>.col-xl-*</code> classes for extra large desktop screens.</p>
+
+</div>
+
+
 		
-<p><i>Here's <code>....html</code> from lecture 0's supplied source code.</i><p>
+<p><i>Here's <code>columns1.html</code> from lecture 1's supplied source code. You can see how a different number of columns of the 12-column grid can be assigned to a large and to a small display.</i><p>
+
+
+<xmp><!DOCTYPE html>
+<html>
+    <head>
+        <title>My Web Page!</title>
+        <link rel="stylesheet" 
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+        <style>
+            .row > div {
+                padding: 20px;
+                background-color: teal;
+                border: 2px solid black;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-sm-6">
+                    This is a section.
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    This is another section.
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    This is a third section.
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    This is a fourth section.
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+</xmp>
+
+<p><i>As specified in this example, on a wide-enough screen, all columns are displayed in one row, while on a smaller screen there are two rows of two columns each.</i></p>
+
 
 <h3>SCSS Variables</h3>
 		
-<p><i>Here's <code>....html</code> from lecture 0's supplied source code.</i><p>
+<p><i>Here's <code>variables/variables.scss</code> from lecture 1's source code.</i></p>
+
+
+<xmp>$color: red;
+
+ul {
+    font-size: 14px;
+    color: $color;
+}
+
+ol {
+    font-size: 18px;
+    color: $color;
+}
+</xmp>
+
+
+<p><i>And here's <code>variables/variables0.css</code> from lecture 1's source code.</i></p>
+
+<xmp>ul {
+  font-size: 14px;
+  color: red;
+}
+
+ol {
+  font-size: 18px;
+  color: red;
+}
+</xmp>
+
+<p><i>Sass converts the <code>*.scss</code> file to a <code>*.css</code> file. According to <a href="https://sass-lang.com/">sass-lang.com</a>, "Sass is the most mature, stable, and powerful professional grade CSS extension language in the world."</i></p>
+
+<p><i>As noted in the course, </i></p>
+
+
 
 <h3>SCSS Nesting</h3>
 		
-<p><i>Here's <code>....html</code> from lecture 0's supplied source code.</i><p>
+<p><i>Here's <code>nesting/nesting.scss</code> from lecture 1's supplied source code.</i><p>
+<xmp>div {
+    font-size: 18px;
+
+    p {
+        color: blue;
+    }
+
+    ul {
+        color: green;
+    }
+}
+</xmp>
+
 
 <h3>SCSS Inheritance</h3>
 		
-<p><i>Here's <code>....html</code> from lecture 0's supplied source code.</i><p>
+<p><i>Here are <code>inheritance/inheritance.html</code> and <code>inheritance/inheritance.scss</code> from lecture 1's supplied source code.</i><p>
+
+
+<xmp><!DOCTYPE html>
+<html>
+    <head>
+        <title>My Web Page!</title>
+        <link rel="stylesheet" href="inheritance.css">
+    </head>
+    <body>
+
+        <div class="success">This is a success message.</div>
+
+        <div class="warning">This is a warning message.</div>
+
+        <div class="error">This is an error message.</div>
+
+    </body>
+</html></xmp>
+
+
+
+<xmp>%message {
+    font-family: sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    border: 1px solid black;
+    padding: 20px;
+    margin: 20px;
+}
+
+.success {
+    @extend %message;
+    background-color: green;
+}
+
+.warning {
+    @extend %message;
+    background-color: orange;
+}
+
+.error {
+    @extend %message;
+    background-color: red;
+}
+</xmp>
+
+
 
 <h3>Markdown and <code>README.md</code></h3>
+
+<p><i>GitHub provides <a href="https://guides.github.com/features/mastering-markdown/">a guide</a> to Markdown syntax.</i></p>
 		
-<p><i>Here's <code>....html</code> from lecture 0's supplied source code.</i><p>
-		
+<div class="quote-tab">
+<p>Markdown is a way to style text on the web. You control the display of the document; formatting words as bold or italic, adding images, and creating lists are just a few of the things we can do with Markdown. Mostly, Markdown is just regular text with a few non-alphabetic characters thrown in, like <code>#</code> or <code>*</code>.</p>
+</div>
+
+<p><i>GitHub also provides a <a href="https://help.github.com/en/github/creating-cloning-and-archiving-repositories/about-readmes">guide</a> on writing readable README files.</i></p>
+
+<div class="quote-tab">
+<p>A README is often the first item a visitor will see when visiting your repository. README files typically include information on:</p>
+
+<ul>
+<li>What the project does</li>
+<li>Why the project is useful</li>
+<li>How users can get started with the project</li>
+<li>Where users can get help with your project</li>
+<li>Who maintains and contributes to the project</li>
+</ul>
+
+<p>If you put your README file in your repository's root, docs, or hidden .github directory, GitHub will recognize and automatically surface your README to repository visitors.</p>
+</div>
 
 
 
 
 
-				</div>
+
+
 		</div>
 	</body>
 </html>
