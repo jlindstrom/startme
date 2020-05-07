@@ -684,6 +684,21 @@ ol {
 }
 </xmp>
 
+<p><i>Running <code>sass nesting.scss nesting.css</code> produced:</i></p>
+
+
+<xmp>div {
+  font-size: 18px; }
+  div p {
+    color: blue; }
+  div ul {
+    color: green; }
+
+/*# sourceMappingURL=nesting.css.map */</xmp>
+
+I then typed <code>sass --watch nesting.scss:nesting.css</code> so Sass would monitor changes to the <code>nesting.scss</code> file and update the <code>nesting.css</code> file automatically.
+
+
 
 <h3>SCSS Inheritance</h3>
 		
